@@ -1,151 +1,150 @@
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 public class DataReceiverTest {
 
     @Test
     public void testCheckIfMaxTempIsAboveMinTemp() {
-        assertEquals("a", "b");
+        boolean deltaTemperature = WeatherApiInformation.checkIfMaxTempIsAboveMinTemp("30", "30");
+        assertEquals(true, deltaTemperature);
     }
 
     @Test
     public void testCheckIfMaxTempIsBelowHighestRecorded() {
-        if (40 > 20) {
+        double highestRecordedTemperature = 30.3;
+        double maximumTemperatureInSelectedLocation = WeatherApiInformation.getMaximumTemperature();
+        if (highestRecordedTemperature < maximumTemperatureInSelectedLocation) {
             fail();
         }
     }
 
     @Test
     public void testCheckIfMinTempIsBelowLowestRecorded() {
-        if (40 == 40) {
+        double lowestRecordedTemperature = -30;
+        double minimumTemperatureInSelectedLocation = WeatherApiInformation.getMinimumTemperature();
+        if (lowestRecordedTemperature < minimumTemperatureInSelectedLocation) {
             fail();
         }
     }
 
     @Test
     public void testCheckIfWindSpeedIsPositive() {
-        if (40 == 40) {
-            fail();
-        }
+        assertTrue(WeatherApiInformation.checkWindSpeedReality());
     }
 
     @Test
     public void testCheckIfWindSpeedIsAboveHighestRecorded() {
-        if (40 == 40) {
+        double highestRecordedWindSpeed = 30;
+        double currentWindSpeedInSelectedLocation = WeatherApiInformation.getWindSpeed();
+        if (highestRecordedWindSpeed < currentWindSpeedInSelectedLocation) {
             fail();
         }
     }
 
     @Test
     public void testCheckIfWindDirectionIsPositive() {
-        if (40 == 40) {
+        if (WeatherApiInformation.getWindDirection() < 0) {
             fail();
         }
     }
 
     @Test
     public void testCheckIfWindDirectionIsAboveThreeSixtyDegrees() {
-        if (40 == 40) {
+        if (WeatherApiInformation.getWindDirection() > 360) {
             fail();
         }
     }
 
     @Test
     public void testCheckIfCountryFormatIsCorrect() {
-        if ("UK".equals("UK")) {
-            fail();
-        }
+        assertTrue("ET".equals(WeatherApiInformation.getSelectedLocationCountry()));
     }
 
     @Test
     public void testCheckIfLocationEqualsUserSelectedLocation() {
-        if (40 == 40) {
-            fail();
-        }
+         assertEquals("Tallinn", WeatherApiInformation.getSelectedLocation());
     }
 
     @Test
     public void testCheckIfWeatherApiSentCorrectAmountOfLinesOfData() {
-        if (40 == 40) {
-            fail();
-        }
+        assertEquals(3, WeatherApiInformation.getWeatherApiAmountOfLinesSent());
     }
 
     @Test
     public void testCheckIfHumidityIsPositive() {
-        if (40 == 40) {
+        if (WeatherApiInformation.getHumidity() < 0) {
             fail();
         }
     }
 
     @Test
     public void testCheckIfHumidityIsAboveHighestRecorded() {
-        if (40 == 40) {
+        double highestHumidityRecorded = 30;
+        if (WeatherApiInformation.getHumidity() > highestHumidityRecorded) {
             fail();
         }
     }
 
     @Test
     public void testCheckIfPressureIsPositive() {
-        if (40 == 40) {
+        if (WeatherApiInformation.getPressure() < 0) {
             fail();
         }
     }
 
     @Test
     public void testCheckIfPressureIsAboveHighestRecorded() {
-        if (40 == 40) {
+        double highestRecordedPressure = 30;
+        if (highestRecordedPressure < WeatherApiInformation.getPressure()) {
             fail();
         }
     }
 
     @Test
     public void testCheckIfReceivedLongitudeMatchesWithAskedLongitude() {
-        if (40 == 40) {
+        double longitudeOfSelectedPosition = 03.30;
+        if (longitudeOfSelectedPosition != WeatherApiInformation.getLongitude()) {
             fail();
         }
     }
 
     @Test
     public void testCheckIfReceivedLatitudeMatchesWithAskedLatitude() {
-        if (40 == 40) {
+        double latitudeOfSelectedPosition = 30.30;
+        if (latitudeOfSelectedPosition != WeatherApiInformation.getLatitude()) {
             fail();
         }
     }
 
     @Test
     public void testCheckIfVisibilityIsPositive() {
-        if (40 == 40) {
+        if (WeatherApiInformation.getVisibility() < 0) {
             fail();
         }
     }
 
     @Test
     public void testCheckIfWeatherNameIsCorrect() {
-        if (40 == 40) {
-            fail();
-        }
+        assertTrue(WeatherApiInformation.checkIfWeatherNameIsCorrect());
     }
 
     @Test
     public void testCheckIfWeatherDescriptionHasCorrectFormat() {
-        if (40 == 40) {
-            fail();
-        }
+        assertTrue(WeatherApiInformation.checkIfWeatherDescriptionHasCorrectFormat());
     }
 
     @Test
     public void testCheckIfCloudDescriptionHasCorrectFormat() {
-        if (40 == 40) {
-            fail();
-        }
+        assertTrue(WeatherApiInformation.checkIfCloudDescriptionHasCorrectFormat());
     }
 
     @Test
     public void testCheckIfReceivedCityIdMatchesWithAskedCityId() {
-        if (40 == 40) {
-            fail();
-        }
+        int selectedCityID = 97;
+        assertEquals(selectedCityID, WeatherApiInformation.getSelectedCityID());
     }
+
 }
