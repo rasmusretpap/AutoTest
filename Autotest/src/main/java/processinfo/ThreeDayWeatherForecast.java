@@ -1,54 +1,22 @@
-import org.json.JSONObject;
+package processinfo;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
+import org.json.JSONObject;
 import java.util.ArrayList;
 
-public class WeatherApiResponse {
+public class ThreeDayWeatherForecast {
 
-    public static void main(String[] args) throws Exception {
-        ArrayList<Double> temperatureList;
-        ArrayList<Double> minTemperatureList;
-        ArrayList<Double> maxTemperatureList;
-        ArrayList<Double> minMaxTempList;
 
-        String apiData = "";
+    public static ArrayList<Double> getMinMaxTemperatureList(JSONObject dataFromApi) {
 
-        URL apiUrl = new URL("http://api.openweathermap.org/data/2.5/forecast?id=588409&APPID=d02d0a3c1e7b1840370a11699a3682c9");
-        URLConnection connection = apiUrl.openConnection();
-
-        InputStream is = connection.getInputStream();
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
-        String line;
-        while ((line = br.readLine()) != null) {
-            apiData += line;
-        }
-        br.close();
-
-        JSONObject dataFromApi = new JSONObject(apiData);
-
-        temperatureList = getTemperatureList(dataFromApi);
-        minTemperatureList = getMinTemperatureList(dataFromApi);
-        maxTemperatureList = getMaxTemperatureList(dataFromApi);
-        minMaxTempList = getMinMaxTemperatureList(minTemperatureList, maxTemperatureList);
-
-    }
-
-    private static ArrayList<Double> getMinMaxTemperatureList(ArrayList<Double> minTemperatureList, ArrayList<Double> maxTemperatureList) {
         ArrayList<Double> minMaxTempList = new ArrayList<Double>();
-        minMaxTempList.add(getMinimumTemperatureForDayOne(minTemperatureList));
-        minMaxTempList.add(getMaximumTemperatureForDayOne(maxTemperatureList));
+        minMaxTempList.add(getMinimumTemperatureForDayOne(dataFromApi));
+        minMaxTempList.add(getMaximumTemperatureForDayOne(dataFromApi));
 
-        minMaxTempList.add(getMinimumTemperatureForDayTwo(minTemperatureList));
-        minMaxTempList.add(getMaximumTemperatureForDayTwo(maxTemperatureList));
+        minMaxTempList.add(getMinimumTemperatureForDayTwo(dataFromApi));
+        minMaxTempList.add(getMaximumTemperatureForDayTwo(dataFromApi));
 
-        minMaxTempList.add(getMinimumTemperatureForDayThree(minTemperatureList));
-        minMaxTempList.add(getMaximumTemperatureForDayThree(maxTemperatureList));
-        System.out.println(minMaxTempList);
+        minMaxTempList.add(getMinimumTemperatureForDayThree(dataFromApi));
+        minMaxTempList.add(getMaximumTemperatureForDayThree(dataFromApi));
         return minMaxTempList;
 
     }
@@ -71,7 +39,7 @@ public class WeatherApiResponse {
         return minTemperatureList;
     }
 
-    private static ArrayList<Double> getTemperatureList(JSONObject dataFromApi) {
+    private static ArrayList<Double> getCurrentTemperatureList(JSONObject dataFromApi) {
         ArrayList<Double> temperatureList = new ArrayList<Double>();
         for (int apiTimeStamp = 0; apiTimeStamp < 40; apiTimeStamp++) {
             temperatureList.add(dataFromApi.getJSONArray("list").
@@ -80,7 +48,8 @@ public class WeatherApiResponse {
         return temperatureList;
     }
 
-    private static double getMaximumTemperatureForDayOne(ArrayList<Double> maxTemperatureList) {
+    private static double getMaximumTemperatureForDayOne(JSONObject dataFromApi) {
+        ArrayList<Double> maxTemperatureList = getMaxTemperatureList(dataFromApi);
         double maximumTemperatureForDayOne = maxTemperatureList.get(0);
         for(int firstDaysWorthOfApiTimeStamps = 0; firstDaysWorthOfApiTimeStamps < 8; firstDaysWorthOfApiTimeStamps++) {
             if (maxTemperatureList.get(firstDaysWorthOfApiTimeStamps) > maximumTemperatureForDayOne) {
@@ -90,7 +59,8 @@ public class WeatherApiResponse {
         return maximumTemperatureForDayOne;
     }
 
-    private static double getMaximumTemperatureForDayThree(ArrayList<Double> maxTemperatureList) {
+    private static double getMaximumTemperatureForDayThree(JSONObject dataFromApi) {
+        ArrayList<Double> maxTemperatureList = getMaxTemperatureList(dataFromApi);
         double maximumTemperatureForDayThree = maxTemperatureList.get(0);
         for(int firstDaysWorthOfApiTimeStamps = 17; firstDaysWorthOfApiTimeStamps < 26; firstDaysWorthOfApiTimeStamps++) {
             if (maxTemperatureList.get(firstDaysWorthOfApiTimeStamps) > maximumTemperatureForDayThree) {
@@ -100,7 +70,8 @@ public class WeatherApiResponse {
         return maximumTemperatureForDayThree;
     }
 
-    private static double getMaximumTemperatureForDayTwo(ArrayList<Double> maxTemperatureList) {
+    private static double getMaximumTemperatureForDayTwo(JSONObject dataFromApi) {
+        ArrayList<Double> maxTemperatureList = getMaxTemperatureList(dataFromApi);
         double maximumTemperatureForDayTwo = maxTemperatureList.get(0);
         for(int firstDaysWorthOfApiTimeStamps = 9; firstDaysWorthOfApiTimeStamps < 17; firstDaysWorthOfApiTimeStamps++) {
             if (maxTemperatureList.get(firstDaysWorthOfApiTimeStamps) > maximumTemperatureForDayTwo) {
@@ -110,8 +81,10 @@ public class WeatherApiResponse {
         return maximumTemperatureForDayTwo;
     }
 
-    private static double getMinimumTemperatureForDayOne(ArrayList<Double> minTemperatureList) {
+    private static double getMinimumTemperatureForDayOne(JSONObject dataFromApi) {
+        ArrayList<Double> minTemperatureList = getMinTemperatureList(dataFromApi);
         double minimumTemperatureForDayOne = minTemperatureList.get(0);
+
         for(int firstDaysWorthOfApiTimeStamps = 0; firstDaysWorthOfApiTimeStamps < 8; firstDaysWorthOfApiTimeStamps++) {
             if (minTemperatureList.get(firstDaysWorthOfApiTimeStamps) < minimumTemperatureForDayOne) {
                 minimumTemperatureForDayOne = minTemperatureList.get(firstDaysWorthOfApiTimeStamps);
@@ -120,8 +93,10 @@ public class WeatherApiResponse {
         return minimumTemperatureForDayOne;
     }
 
-    private static double getMinimumTemperatureForDayTwo(ArrayList<Double> minTemperatureList) {
+    private static double getMinimumTemperatureForDayTwo(JSONObject dataFromApi) {
+        ArrayList<Double> minTemperatureList = getMinTemperatureList(dataFromApi);
         double minimumTemperatureForDayTwo = minTemperatureList.get(9);
+
         for(int firstDaysWorthOfApiTimeStamps = 9; firstDaysWorthOfApiTimeStamps < 17; firstDaysWorthOfApiTimeStamps++) {
             if (minTemperatureList.get(firstDaysWorthOfApiTimeStamps) < minimumTemperatureForDayTwo) {
                 minimumTemperatureForDayTwo = minTemperatureList.get(firstDaysWorthOfApiTimeStamps);
@@ -130,8 +105,10 @@ public class WeatherApiResponse {
         return minimumTemperatureForDayTwo;
     }
 
-    private static double getMinimumTemperatureForDayThree(ArrayList<Double> minTemperatureList) {
+    private static double getMinimumTemperatureForDayThree(JSONObject dataFromApi) {
+        ArrayList<Double> minTemperatureList = getMinTemperatureList(dataFromApi);
         double minimumTemperatureForDayThree = minTemperatureList.get(17);
+
         for(int firstDaysWorthOfApiTimeStamps = 17; firstDaysWorthOfApiTimeStamps < 26; firstDaysWorthOfApiTimeStamps++) {
             if (minTemperatureList.get(firstDaysWorthOfApiTimeStamps) < minimumTemperatureForDayThree) {
                 minimumTemperatureForDayThree = minTemperatureList.get(firstDaysWorthOfApiTimeStamps);
