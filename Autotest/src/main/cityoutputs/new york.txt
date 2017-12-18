@@ -1,0 +1,13 @@
+City: New York.
+Country: US.
+
+Day one minimum temperature: 1.55.
+Day one maximum temperature: 6.3.
+
+Day two minimum temperature: 4.61.
+Day two maximum temperature: 8.37.
+
+Day three minimum temperature: -1.95.
+Day three maximum temperature: 6.04.
+
+Coordinates: 40.7143:-74.006.

@@ -1,25 +1,15 @@
 package main;
 
-import getdata.GetDataFromApi;
-import org.json.JSONObject;
-import processinfo.CurrentWeatherForecast;
-import processinfo.ThreeDayWeatherForecast;
+import getdata.GetDataRunner;
+import getdata.GetUserInput;
 
-import java.net.MalformedURLException;
-import java.util.ArrayList;
+import java.io.IOException;
 
 public class Main {
-
-    public static void main(String[] args) throws MalformedURLException {
-        
-        GetDataFromApi getForecastDataFromApi = new GetDataFromApi("Tallinn", "EE", "metric", "forecast");
-        GetDataFromApi getCurrentDataFromApi = new GetDataFromApi("Tallinn", "EE", "metric", "weather");
-
-        JSONObject forecast = getForecastDataFromApi.getDataFromApi();
-        JSONObject current = getCurrentDataFromApi.getDataFromApi();
-
-        ArrayList<Double> minMaxTempList = ThreeDayWeatherForecast.getMinMaxTemperatureList(forecast);
-        System.out.println(minMaxTempList);
-        System.out.println(CurrentWeatherForecast.getCurrentTemperature(current));
+    public static void main(String[] args) throws IOException {
+        GetUserInput getUserInput = new GetUserInput();
+        GetDataRunner getDataRunner = new GetDataRunner(getUserInput);
+        getDataRunner.getAllData();
     }
+
 }

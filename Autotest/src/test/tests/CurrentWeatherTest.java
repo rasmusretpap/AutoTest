@@ -1,22 +1,24 @@
-import getdata.GetDataFromApi;
+import getdata.CurrentWeatherForecast;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.fail;
-import processinfo.CurrentWeatherForecast;
+import processinfo.CurrentWeatherForecastProcessor;
 
 import java.net.MalformedURLException;
 
 public class CurrentWeatherTest {
 
-    private JSONObject jsonObject;
+    private JSONObject dataFromApi;
+    private CurrentWeatherForecastProcessor currentWeatherForecastProcessor;
 
     @Before
-    public void setup() {
-        GetDataFromApi getDataFromApi = new GetDataFromApi("Tallinn", "EE", "metric", "weather");
+    public void beforeEveryTest() {
+        CurrentWeatherForecast currentWeatherForecast = new CurrentWeatherForecast();
+        currentWeatherForecastProcessor = new CurrentWeatherForecastProcessor();
         try {
-            jsonObject = getDataFromApi.getDataFromApi();
+            dataFromApi = currentWeatherForecast.getDataFromApi();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -24,7 +26,7 @@ public class CurrentWeatherTest {
 
     @Test
     public void testCheckIfTemperatureIsNotAbnormal() {
-        double currentTemp = CurrentWeatherForecast.getCurrentTemperature(jsonObject);
+        double currentTemp = currentWeatherForecastProcessor.getCurrentTemperature(dataFromApi);
         if (currentTemp < -50 || currentTemp > 50) {
             fail();
         }
@@ -32,7 +34,7 @@ public class CurrentWeatherTest {
 
     @Test
     public void testCheckIfHumidityIsNotAbnormal() {
-        double currentHumidity = CurrentWeatherForecast.getCurrentHumidity(jsonObject);
+        double currentHumidity = currentWeatherForecastProcessor.getCurrentHumidity(dataFromApi);
         if (currentHumidity < 0 || currentHumidity > 100) {
             fail();
         }
@@ -40,7 +42,7 @@ public class CurrentWeatherTest {
 
     @Test
     public void testCheckIfPressureIsNotAbnormal() {
-        double currentPressure = CurrentWeatherForecast.getCurrentPressure(jsonObject);
+        double currentPressure = currentWeatherForecastProcessor.getCurrentPressure(dataFromApi);
         if (currentPressure < 870 || currentPressure > 1083) {
             fail();
         }
@@ -48,7 +50,7 @@ public class CurrentWeatherTest {
 
     @Test
     public void testCheckIfWindSpeedIsNotAbnormal() {
-        double currentWindSpeed = CurrentWeatherForecast.getCurrentWindSpeed(jsonObject);
+        double currentWindSpeed = currentWeatherForecastProcessor.getCurrentWindSpeed(dataFromApi);
         if (currentWindSpeed < 0 || currentWindSpeed > 105) {
             fail();
         }
@@ -56,7 +58,7 @@ public class CurrentWeatherTest {
 
     @Test
     public void testCheckIfDirectionIsNotAbnormal() {
-        double currentWindDirection = CurrentWeatherForecast.getCurrentWindDirection(jsonObject);
+        double currentWindDirection = currentWeatherForecastProcessor.getCurrentWindDirection(dataFromApi);
         if (currentWindDirection < 0 || currentWindDirection > 360) {
             fail();
         }
@@ -64,23 +66,38 @@ public class CurrentWeatherTest {
 
     @Test
     public void testCheckIfCountryCodeMatches() {
-        String currentCountyCode = CurrentWeatherForecast.getCurrentCountryCode(jsonObject);
+        String currentCountyCode = currentWeatherForecastProcessor.getCurrentCountryCode(dataFromApi);
         Assert.assertTrue(currentCountyCode.equals("EE"));
     }
 
     @Test
     public void testCheckIfCityMatches() {
-        String currentCity = CurrentWeatherForecast.getCurrentCity(jsonObject);
+        String currentCity = currentWeatherForecastProcessor.getCurrentCity(dataFromApi);
         Assert.assertTrue(currentCity.equals("Tallinn"));
     }
 
     @Test
     public void testCheckIfVisibilityIsAbnormal() {
-        double currentVisibility = CurrentWeatherForecast.getCurrentVisibility(jsonObject);
+        double currentVisibility = currentWeatherForecastProcessor.getCurrentVisibility(dataFromApi);
         if (currentVisibility < 0 || currentVisibility > 12000) {
             fail();
         }
     }
 
+    @Test
+    public void testCheckIfLongitudeHasNormalValue() {
+        double longitude = currentWeatherForecastProcessor.getLocationLongitude(dataFromApi);
+        if(longitude < -180 || longitude > 180) {
+            fail();
+        }
+    }
+
+    @Test
+    public void testCheckIfLatitudeHasNormalValue() {
+        double latitude = currentWeatherForecastProcessor.getLocationLatitude(dataFromApi);
+        if(latitude < -90 || latitude > 90) {
+            fail();
+        }
+    }
 
 }

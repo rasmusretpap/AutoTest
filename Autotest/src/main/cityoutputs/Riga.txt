@@ -1,0 +1,13 @@
+City: Riga.
+Country: LV.
+
+Day one minimum temperature: -1.54.
+Day one maximum temperature: 3.73.
+
+Day two minimum temperature: -0.36.
+Day two maximum temperature: 2.42.
+
+Day three minimum temperature: 0.75.
+Day three maximum temperature: 3.5.
+
+Coordinates: 56.95:24.1.

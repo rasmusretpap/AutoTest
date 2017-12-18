@@ -1,0 +1,13 @@
+City: London.
+Country: UK.
+
+Day one minimum temperature: -3.85.
+Day one maximum temperature: 6.18.
+
+Day two minimum temperature: 2.52.
+Day two maximum temperature: 8.64.
+
+Day three minimum temperature: 8.17.
+Day three maximum temperature: 9.86.
+
+Coordinates: 51.5085:-0.1258.

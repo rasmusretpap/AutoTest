@@ -1,0 +1,13 @@
+City: California.
+Country: US.
+
+Day one minimum temperature: 1.33.
+Day one maximum temperature: 10.53.
+
+Day two minimum temperature: 0.54.
+Day two maximum temperature: 12.44.
+
+Day three minimum temperature: 0.14.
+Day three maximum temperature: 9.93.
+
+Coordinates: 38.3004:-76.5075.

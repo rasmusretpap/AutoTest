@@ -1,3 +1,4 @@
+import httputility.HttpUtility;
 import org.junit.Test;
 import java.io.IOException;
 import java.net.HttpURLConnection;
