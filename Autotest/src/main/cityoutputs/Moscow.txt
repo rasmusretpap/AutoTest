@@ -1,13 +1,13 @@
 City: Moscow.
 Country: RU.
 
-Day one minimum temperature: -1.47.
-Day one maximum temperature: -0.05.
+Day one minimum temperature: -7.72.
+Day one maximum temperature: -1.21.
 
-Day two minimum temperature: -1.57.
-Day two maximum temperature: 1.13.
+Day two minimum temperature: -9.23.
+Day two maximum temperature: -6.75.
 
-Day three minimum temperature: -8.04.
-Day three maximum temperature: -4.65.
+Day three minimum temperature: -6.61.
+Day three maximum temperature: -5.24.
 
-Coordinates: 55.7522:37.6156.
+Coordinates: 55.7507:37.6177.

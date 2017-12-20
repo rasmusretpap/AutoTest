@@ -87,4 +87,13 @@ public class ThreeDayWeatherTest {
             fail();
         }
     }
+
+    @Test
+    public void testIfMinMaxListHasCorrectValues() {
+        ArrayList<Double> minMaxTempList = threeDayWeatherForecastProcessor.getMinMaxTemperatureList(dataFromApi);
+        if (minMaxTempList.get(0) > minMaxTempList.get(1) || minMaxTempList.get(2) > minMaxTempList.get(3)
+                || minMaxTempList.get(4) > minMaxTempList.get(5)) {
+            fail();
+        }
+    }
 }

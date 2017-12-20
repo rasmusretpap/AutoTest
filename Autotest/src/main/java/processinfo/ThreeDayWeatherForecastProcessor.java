@@ -23,29 +23,20 @@ public class ThreeDayWeatherForecastProcessor {
 
     private ArrayList<Double> getMaxTemperatureList(JSONObject dataFromApi) {
         ArrayList<Double> maxTemperatureList = new ArrayList<Double>();
-        for (int apiTimeStamp = 0; apiTimeStamp < getJSONArrayLength(dataFromApi); apiTimeStamp++) {
+        for (int threeHourTicks = 0; threeHourTicks < getJSONArrayLength(dataFromApi); threeHourTicks++) {
             maxTemperatureList.add(dataFromApi.getJSONArray("list").
-                    getJSONObject(apiTimeStamp).getJSONObject("main").getDouble("temp_max"));
+                    getJSONObject(threeHourTicks).getJSONObject("main").getDouble("temp_max"));
         }
         return maxTemperatureList;
     }
 
     private ArrayList<Double> getMinTemperatureList(JSONObject dataFromApi) {
         ArrayList<Double> minTemperatureList = new ArrayList<Double>();
-        for (int apiTimeStamp = 0; apiTimeStamp < getJSONArrayLength(dataFromApi); apiTimeStamp++) {
+        for (int threeHourTicks = 0; threeHourTicks < getJSONArrayLength(dataFromApi); threeHourTicks++) {
             minTemperatureList.add(dataFromApi.getJSONArray("list").
-                    getJSONObject(apiTimeStamp).getJSONObject("main").getDouble("temp_min"));
+                    getJSONObject(threeHourTicks).getJSONObject("main").getDouble("temp_min"));
         }
         return minTemperatureList;
-    }
-
-    private ArrayList<Double> getCurrentTemperatureList(JSONObject dataFromApi) {
-        ArrayList<Double> temperatureList = new ArrayList<Double>();
-        for (int apiTimeStamp = 0; apiTimeStamp < getJSONArrayLength(dataFromApi); apiTimeStamp++) {
-            temperatureList.add(dataFromApi.getJSONArray("list").
-                    getJSONObject(apiTimeStamp).getJSONObject("main").getDouble("temp"));
-        }
-        return temperatureList;
     }
 
     private double getMaximumTemperatureForDayOne(JSONObject dataFromApi) {

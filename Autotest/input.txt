@@ -1,13 +1,1 @@
-tallinn,ee
-london,uk
-new york,us
-berlin, de
-London,UK
 Tallinn,EE
-Moscow,RU
-Tallinn,EE
-London,UK
-Tallinn,EE
-Moscow,RU
-New York,US
-Riga,LV

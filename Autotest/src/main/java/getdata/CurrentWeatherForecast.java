@@ -39,6 +39,7 @@ public class CurrentWeatherForecast {
 
         InputStream is = null;
         try {
+            assert connection != null;
             is = connection.getInputStream();
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,1 +1,7 @@
 Berlin,DE
+
+Tallinn,EE
+New York,US
+
+; ;
+London,UK

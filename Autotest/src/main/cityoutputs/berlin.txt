@@ -1,13 +1,13 @@
 City: berlin.
 Country:  de.
 
-Day one minimum temperature: -4.42.
-Day one maximum temperature: 1.21.
+Day one minimum temperature: 1.62.
+Day one maximum temperature: 4.32.
 
-Day two minimum temperature: 0.7.
-Day two maximum temperature: 2.64.
+Day two minimum temperature: 2.23.
+Day two maximum temperature: 4.17.
 
-Day three minimum temperature: 1.47.
-Day three maximum temperature: 5.77.
+Day three minimum temperature: 4.02.
+Day three maximum temperature: 7.45.
 
-Coordinates: 52.5244:13.4105.
+Coordinates: 52.517:13.3889.

@@ -1,0 +1,13 @@
+City: Paris.
+Country: FR.
+
+Day one minimum temperature: 6.2.
+Day one maximum temperature: 9.44.
+
+Day two minimum temperature: 8.25.
+Day two maximum temperature: 9.97.
+
+Day three minimum temperature: 7.14.
+Day three maximum temperature: 9.2.
+
+Coordinates: 48.8566:2.3515.

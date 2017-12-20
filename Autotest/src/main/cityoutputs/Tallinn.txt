@@ -1,13 +1,13 @@
 City: Tallinn.
 Country: EE.
 
-Day one minimum temperature: 0.61.
-Day one maximum temperature: 2.75.
+Day one minimum temperature: 0.79.
+Day one maximum temperature: 4.26.
 
-Day two minimum temperature: -2.24.
-Day two maximum temperature: 1.11.
+Day two minimum temperature: -0.23.
+Day two maximum temperature: 2.08.
 
-Day three minimum temperature: 1.83.
-Day three maximum temperature: 3.55.
+Day three minimum temperature: -0.71.
+Day three maximum temperature: 1.49.
 
-Coordinates: 59.437:24.7535.
+Coordinates: 59.4372:24.7454.

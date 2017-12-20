@@ -1,15 +1,21 @@
 package main;
 
-import getdata.GetDataRunner;
+import processinfo.ProcessAllData;
 import getdata.GetUserInput;
+import getdata.ReadFromFile;
+import processinfo.ThreeDayWeatherForecastProcessor;
+import processinfo.WriteToFile;
 
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         GetUserInput getUserInput = new GetUserInput();
-        GetDataRunner getDataRunner = new GetDataRunner(getUserInput);
-        getDataRunner.getAllData();
-    }
+        getUserInput.getUserInput();
 
+
+        ProcessAllData processAllData = new ProcessAllData(new ThreeDayWeatherForecastProcessor(), new WriteToFile(), new ReadFromFile());
+
+        processAllData.getAllData("input.txt");
+    }
 }
